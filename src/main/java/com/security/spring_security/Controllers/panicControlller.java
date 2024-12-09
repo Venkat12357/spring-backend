@@ -50,7 +50,8 @@ public class panicControlller {
     }
     
     @PostMapping("/{userId}/contacts")
-    public ResponseEntity<Void> SaveContacts(@PathVariable("userId") int userId , @RequestBody List<EmergencyContact> EmRBody)
+    public ResponseEntity<Void> SaveContacts(@PathVariable("userId") int userId , @RequestBody
+                                                                     List<EmergencyContact> EmRBody)
     {
         emergencyService.saveContact(userId , EmRBody);
       
