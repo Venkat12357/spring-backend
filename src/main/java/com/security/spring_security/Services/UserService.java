@@ -60,7 +60,7 @@ public class UserService {
 
     public String verifyPhone(String mail)
     {
-        int otp = (int) (Math.random() * 1000);
+        int otp = (int) (Math.random() * 10000);
 
         String message = "Your OTP to Login is :- " + otp;
 
