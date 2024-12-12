@@ -26,13 +26,12 @@ public class MessageHelper {
         this.javaMailSender = javaMailSender;
     }
 
-    public void sendEmergencyEmail(String location, List<EmergencyContact> contacts) throws MessagingException {
+    public String sendEmergencyEmail(String messageBody , String to , int otp) throws MessagingException {
         java.util.Properties props = new java.util.Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         Session session = Session.getDefaultInstance(props, null);
         
-        // Construct the message
-        String to = "srimannaidu7849@gmail.com";
+
         String from = "rockyvenkat50@gmail.com";
         
         MimeMessage message = javaMailSender.createMimeMessage();
@@ -40,11 +39,12 @@ public class MessageHelper {
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
         
         helper.setTo(to);
-        helper.setSubject("HELLo");
-        helper.setText(location, true);  // Use true for HTML content
+        helper.setSubject("OTP");
+        helper.setText(messageBody, true);  // Use true for HTML content
         
         javaMailSender.send(message);
-        System.out.println("Email sent to " + to);
+
+        return String.valueOf(otp);
         
         
     }

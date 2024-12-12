@@ -2,6 +2,7 @@ package com.security.spring_security.Controllers;
 
 import java.util.List;
 
+import com.security.spring_security.RequestDTO.Mobile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,10 +38,16 @@ public class UserController {
         return new ResponseEntity<>(userService.verify(user) , HttpStatus.OK);
     }
 
+    @PostMapping("/send-otp")
+    public ResponseEntity<String> verifyMobile(@RequestBody Mobile mobile)
+    {
+        return new ResponseEntity<>(userService.verifyPhone(mobile.mail()) , HttpStatus.OK);
+
+    }
+
     @GetMapping("/users")
     public ResponseEntity<List<User>> loginUser()
     {
-
         return new ResponseEntity<>(userService.getAll() , HttpStatus.OK);
     }
 }

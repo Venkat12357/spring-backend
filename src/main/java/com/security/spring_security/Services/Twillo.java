@@ -14,10 +14,13 @@ import com.twilio.rest.api.v2010.account.Message;
 public class Twillo {
 
     private String accountSid = "AC56aabe5ae28ea40b9277babb9ca27506";
-    private String authToken = "3070d244d5e3bbcbf87ee531a4c478df";
+    private String authToken = "e595866f7b041f2fd3ded6137d4e5dd6";
     private String twilioPhoneNumber = "+17753109547";
 
+
     public String sendSms(List<EmergencyContact> contact , String messageBody) {
+
+        System.out.println("Message Sent To :- " );
 
         Twilio.init(accountSid, authToken);
             try {
@@ -37,4 +40,6 @@ public class Twillo {
         
             return "Delivered";
     }
+
+
 }

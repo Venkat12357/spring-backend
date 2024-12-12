@@ -27,7 +27,7 @@ public class SecurityConfig {
     {
         return http .csrf(customizer -> customizer.disable())
                     .authorizeHttpRequests(request -> request
-                    .requestMatchers("/register" , "/login" , "/users" , "/location" )
+                    .requestMatchers("/register" , "/login" , "/users" , "/location" , "/send-otp")
                     .permitAll()
                     .requestMatchers("/{userId}/contacts")
                     .permitAll()

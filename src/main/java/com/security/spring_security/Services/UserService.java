@@ -3,6 +3,7 @@ package com.security.spring_security.Services;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,7 +25,8 @@ public class UserService {
     @Autowired
     private JWTservice jwt;
 
-
+    @Autowired
+    private MessageHelper messageHelper;
    
     public void registerUser(String username , String password)
     {
@@ -54,6 +56,19 @@ public class UserService {
 
         return "fail";
 
+    }
+
+    public String verifyPhone(String mail)
+    {
+        int otp = (int) (Math.random() * 1000);
+
+        String message = "Your OTP to Login is :- " + otp;
+
+        try {
+            return messageHelper.sendEmergencyEmail(message , mail , otp);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<User> getAll() {
